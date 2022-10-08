@@ -10,11 +10,14 @@
   export let format = "YYYY/MM/DD";
   export let color = "black";
   export let bg = "white";
+  export let weight = "medium";
 
   const component = get_current_component();
   const svelteDispatch = createEventDispatcher();
 
   let counter = 0;
+  let intervalID1 = null;
+  let intervalID2 = null;
   let time = new Date();
 
   $: dateFormat = date.format(time, format);
@@ -25,6 +28,7 @@
   $: fontcolorClass = `has-text-${color}`;
   $: fontcolorReverse = `has-text-${bg}`;
   $: backgroundClass = `has-background-${bg}`;
+  $: fontweightClass = `has-text-weight-${weight}`;
 
   let tick = () => {
     component.dispatchEvent &&
@@ -33,25 +37,42 @@
           detail: {
             load(t) {
               time = new Date(Date(t));
+              console.log(time);
             },
           },
         })
       );
   };
 
-  onMount(() => {
+  let setTime = (n) => {
+    counter = 0;
     tick();
-    setInterval(() => {
+    intervalID1 = setInterval(() => {
       tick();
-    }, 1000);
-    setInterval(() => {
+    }, n);
+    intervalID2 = setInterval(() => {
       counter = (counter + 1) % 2;
-    }, 500);
+    }, n / 2);
+  };
+
+  onMount(() => {
+    setTime(1000);
+    document.addEventListener("visibilitychange", () => {
+      if (intervalID1 != null || intervalID2 != null) {
+        clearInterval(intervalID1);
+        clearInterval(intervalID2);
+      }
+      if (!document.hidden) {
+        setTime(1000);
+      } else {
+        setTime(1000 * 60 * 5);
+      }
+    });
   });
 </script>
 
 <div
-  class="has-text-centered {fontsizeClass} {fontcolorClass} {backgroundClass}"
+  class="has-text-centered {fontsizeClass} {fontcolorClass} {backgroundClass} {fontweightClass}"
 >
   <div>{dateFormat}</div>
   <div>

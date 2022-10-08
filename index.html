@@ -7,13 +7,19 @@
     <title>Vite + Svelte</title>
   </head>
   <body>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="module" src="./src/main.js"></script>
     <svelte-timer size="4" format="YYYY/MM/DD" color="warning" bg="black"></svelte-timer>
     <script>
       document.querySelector('svelte-timer').addEventListener('tick', (res) => {
-        axios.get('https://portal.stust.edu.tw/gao/service/time.ashx').then(time=>{
+        fetch('https://portal.stust.edu.tw/gao/service/time.ashx')
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(time) {
           res.detail.load(time.data);
+        })
+        .catch(()=>{
+          // 發生錯誤
         })
       });
     </script>
