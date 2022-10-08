@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "bulma": "^0.9.4",
+    "date-and-time": "^2.4.1",
     "node-sass": "^7.0.3",
     "sass": "^1.55.0",
     "svelte-preprocess": "^4.10.7"
