@@ -6,7 +6,7 @@
 2. Add an event listener in script
    ```js
    document.querySelector('svelte-timer').addEventListener('tick', (res) => {
-        fetch('http://worldtimeapi.org/api/timezone/Asia/Taipei')
+        fetch('https://worldtimeapi.org/api/timezone/Asia/Taipei')
         .then(function(response) {
           return response.json();
         })
