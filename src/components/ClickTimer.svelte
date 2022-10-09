@@ -36,8 +36,7 @@
         new CustomEvent("tick", {
           detail: {
             load(t) {
-              time = new Date(Date(t));
-              console.log(time);
+              time = typeof Date(t) === "string" ? new Date(Date(t)) : Date(t);
             },
           },
         })

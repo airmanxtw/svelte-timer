@@ -5,9 +5,10 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + Svelte</title>
+    <script type="module" crossorigin src="/svelte-timer.0.1.0.js"></script>
   </head>
   <body>
-    <script type="module" src="./src/main.js"></script>
+    
     <svelte-timer size="4" format="YYYY/MM/DD" color="warning" bg="black"></svelte-timer>
     <script>
       document.querySelector('svelte-timer').addEventListener('tick', (res) => {

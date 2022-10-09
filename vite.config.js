@@ -8,7 +8,6 @@ export default defineConfig({
     rollupOptions: {
       output: {
         entryFileNames: "svelte-timer.0.1.0.js",
-        dir: "./dist/",
       },
     },
   },
