@@ -5,7 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + Svelte</title>
-    <script type="module" crossorigin src="/svelte-timer.0.1.0.js"></script>
+    <script type="module" crossorigin src="svelte-timer.0.1.0.js"></script>
   </head>
   <body>
     
@@ -14,20 +14,20 @@
       document.querySelector('svelte-timer').addEventListener('tick', (res) => {
         
         // ** using fetch **
-        //
-        // fetch('http://worldtimeapi.org/api/timezone/Asia/Taipei')
-        // .then(function(response) {
-        //   return response.json();
-        // })
-        // .then(function(time) {
-        //   res.detail.load(time.data);
-        // })
-        // .catch((err)=>{
-        //   console.log(err);
-        //   // 發生錯誤
-        // })
         
-        res.detail.load((new Date()).toString());
+        fetch('http://worldtimeapi.org/api/timezone/Asia/Taipei')
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(time) {
+          res.detail.load(time.data);
+        })
+        .catch((err)=>{
+          console.log(err);
+          // 發生錯誤
+        })
+        
+        //res.detail.load((new Date()).toString());
 
       });
     </script>
