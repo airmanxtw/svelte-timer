@@ -1,4 +1,7 @@
 # Svelte + Vite + Timer
+
+## [demo](https://airmanxtw.github.io/svelte-timer/)
+
 1. Point to an external JavaScript file: 
    ```html
     <script type="module" crossorigin src="/svelte-timer.0.1.0.js"></script>
