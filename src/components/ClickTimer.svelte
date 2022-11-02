@@ -2,7 +2,8 @@
 
 <script>
   import { onMount } from "svelte";
-  import { createEventDispatcher } from "svelte";
+  //import { createEventDispatcher } from "svelte";
+  //import { get_current_component } from "svelte/internal";
   import { get_current_component } from "svelte/internal";
   import date from "date-and-time";
 
@@ -13,7 +14,7 @@
   export let weight = "medium";
 
   const component = get_current_component();
-  const svelteDispatch = createEventDispatcher();
+  //const svelteDispatch = createEventDispatcher();
 
   let counter = 0;
   let intervalID1 = null;
@@ -31,16 +32,16 @@
   $: fontweightClass = `has-text-weight-${weight}`;
 
   let tick = () => {
-    component.dispatchEvent &&
-      component.dispatchEvent(
-        new CustomEvent("tick", {
-          detail: {
-            load(t) {
-              time = typeof Date(t) === "string" ? new Date(Date(t)) : Date(t);
-            },
+    //component.dispatchEvent &&
+    component.dispatchEvent(
+      new CustomEvent("tick", {
+        detail: {
+          load(t) {
+            time = typeof Date(t) === "string" ? new Date(Date(t)) : Date(t);
           },
-        })
-      );
+        },
+      })
+    );
   };
 
   let setTime = (n) => {
